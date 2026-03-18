@@ -10,15 +10,16 @@ app.use((req,res, next)=>{
 app.get("/", (req, res) => {
     res.send(`
         <h1>Menu</h1>
-        <a href="/aluno/Mirian">Ir para aluno</a><br>
-        <a href="/status">Ir para status</a>
-        
+        <a href="/aluno/Ana">Ir para aluno</a><br>
+        <a href="/status">Ir para status</a><br>
+        <a href="/subtracao">Ir para subtracao</a><br>
+        <a href="/multiplicacao">Ir para multiplicacao</a><br>
     `);
 });
 
 
 app.get("/aluno",(req,res)=>{
-    res.send("Rota de aluno funcionando");
+    res.send("Bem-Vindo!");
 });
 
 app.get("/aluno/:nome",(req,res)=>{
@@ -26,7 +27,7 @@ app.get("/aluno/:nome",(req,res)=>{
     res.send(`Ola,${nome}!`);
 });
 
-
+//soma
 app.get("/soma/:a/:b", (req, res) => {
     const a = Number(req.params.a);
     const b = Number(req.params.b);
@@ -34,7 +35,7 @@ app.get("/soma/:a/:b", (req, res) => {
 
     res.send(`Resultado: ${resultado}!`);
 });
-
+//status
 app.get("/status", (req, res) => {
     res.json({
         servidor: "online",
@@ -44,10 +45,26 @@ app.get("/status", (req, res) => {
     });
 });
 
+//subtração
+app.get("/subtracao/:a/:b", (req, res) => {
+    const a = Number(req.params.a);
+    const b = Number(req.params.b);
+    const resultado = a - b;
+
+    res.send(`Resultado: ${resultado}!`);
+});
+
+//multiplicação
+app.get("/multiplicacao/:a/:b", (req, res) => {
+    const a = Number(req.params.a);
+    const b = Number(req.params.b);
+    const resultado = a * b;
+
+    res.send(`Resultado: ${resultado}!`);
+});
 
 
-
-const PORTA = 3000
+const PORTA = 3001
 
 app.listen(PORTA, () =>{
     console.log(`Servidor rodando em http://localhost:${PORTA}`);
